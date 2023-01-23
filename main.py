@@ -2,10 +2,13 @@ import os
 import shutil
 
 root_dir = r"C:\Users\Desarrollo\Documents\CFDi Manuales\COMPLEMENTOS"
-dest_dir = "./comp"
+dest_dir = r"./comp"
 
 
 def main():
+    if not os.path.exists(dest_dir):
+        os.makedirs(dest_dir)
+
     counter = 0
     for dirpath, dirnames, files in os.walk(root_dir):
         for file in files:
