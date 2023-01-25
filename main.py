@@ -6,7 +6,7 @@ from utils import (
 )
 
 root_dir = r"C:\Users\Desarrollo\Downloads\COMPLEMENTOS"
-dest_dir = os.path.join('comp')
+dest_dir = os.path.join(r'C:\Users\Desarrollo\Downloads\comp')
 
 
 def main():

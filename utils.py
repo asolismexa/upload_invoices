@@ -4,6 +4,7 @@ from api import (
     get_info_from_xml,
     send_complemento_to_menfis
 )
+from errors import save_errors_file
 
 
 def find_and_copy_all_xml(root_dir: str, output_dir: str):
@@ -67,3 +68,4 @@ def upload_invoices(root_dir: str) -> None:
 
     print("Total errors: ", len(errors))
     print(errors)
+    save_errors_file(errors)
