@@ -1,34 +1,22 @@
 import os
-import shutil
+import sys
+from utils import (
+    find_and_copy_all_xml,
+    upload_invoices
+)
 
-root_dir = r"C:\Users\Desarrollo\Documents\CFDi Manuales\COMPLEMENTOS"
-dest_dir = r"./comp"
+root_dir = r"C:\Users\Desarrollo\Downloads\COMPLEMENTOS"
+dest_dir = os.path.join('comp')
 
 
 def main():
-    if not os.path.exists(dest_dir):
-        os.makedirs(dest_dir)
+    try:
+        if "-f" in sys.argv:
+            find_and_copy_all_xml(root_dir, dest_dir)
 
-    counter = 0
-    for dirpath, dirnames, files in os.walk(root_dir):
-        for file in files:
-            if not file.endswith(".xml"):
-                continue
-
-            if not file.startswith("PAGO"):
-                continue
-
-            if "Copy" in file:
-                continue
-
-            if "tmp" in file:
-                continue
-
-            filename = os.path.join(dirpath, file)
-            shutil.copy(filename, os.path.join(dest_dir, file))
-            counter += 1
-
-    print(f"Copied: {counter}")
+        upload_invoices(dest_dir)
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':
